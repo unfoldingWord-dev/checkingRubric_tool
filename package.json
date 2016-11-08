@@ -1,0 +1,12 @@
+{
+  "name": "TranslationQuestionsChecker",
+  "version": "1.0.0",
+  "description": "This is a tool to check the quality assurance of a bible translation project.",
+  "title": "TranslationQuestions Check",
+  "include": [],
+  "main": "View.js",
+  "display": "app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
