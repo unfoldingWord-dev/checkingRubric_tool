@@ -18,10 +18,7 @@ function generateChecks(bookData, params, progressCallback, callback) {
       group: groupName,
       checks: []
     };
-    console.log(bookData);
     for (let chapter of bookData.chapters) {
-      console.log(bookData.chapters);
-
         if(chapter.num){
           var check = {
             chapter: parseInt(chapter.num),
