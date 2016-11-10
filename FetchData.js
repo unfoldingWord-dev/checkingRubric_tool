@@ -248,15 +248,10 @@ function joinChunks(text, currentChapter, currentJoined) {
         var currentVerse = currentChunk.verses[verse];
         currentJoined[currentChapter][verse] = currentVerse;
         console.log(currentJoined);
-
       }
     }
   }
 }
-
-
-
-
 
 
 
