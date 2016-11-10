@@ -2,9 +2,7 @@ const api = window.ModuleApi;
 
 const path = require('path');
 const fs = require(window.__base + 'node_modules/fs-extra');
-
 var parser = require('./usfm-parse.js');
-var missingChunks = 0;
 
 
 function getData(params, progressCallback, onCompleteCallback) {
@@ -120,24 +118,6 @@ function generateChecks(bookData, params, progressCallback, callback) {
 
 }
 
-  function goup(){
-///////////////////////////////
-///////////////////////////////
-    var targetLanguage = api.getDataFromCommon('targetLanguage');
-    if (!targetLanguage) {
-      if (!params.targetLanguagePath) {
-        console.error('translationRubric requires a filepath');
-      }
-      else {
-        sendToReader(params.targetLanguagePath, callback);
-      }
-    }
-    callback();
-  }
-///////////////////////////////
-///////////////////////////////
-///////////////////////////////
-///////////////////////////////
 /**
 * @description This function is used to send a file path to the readFile()
 * module
@@ -159,6 +139,7 @@ function sendToReader(file, callback) {
 ******************************************************************************/
 function readInManifest(manifest, source, callback) {
   var bookTitle;
+  var missingChunks = 0;
   if (manifest.ts_project) {
     bookTitle = manifest.ts_project.name;
   }  else  {
@@ -179,7 +160,6 @@ function readInManifest(manifest, source, callback) {
           done++;
           if (done >= (total - missingChunks)) {
             missingChunks = 0;
-            console.log(currentJoined + "joined");
             api.putDataInCommon('targetLanguage', currentJoined);
             callback();
           }
@@ -203,23 +183,14 @@ function len(obj) {
 * @param {array} chunk - An array of the chunks defined in manifest
 ******************************************************************************/
 function openUsfmFromChunks(chunk, currentJoined, totalChunk, source, callback) {
-  console.log(currentJoined);
-  console.log("openUsfmFromChunks");
   let currentChapter = chunk[0];
   try {
     currentChapter = parseInt(currentChapter);
-    console.log(currentChapter);
     var fileName = chunk[1] + '.txt';
-    console.log(fileName);
     var chunkLocation = path.join(source, chunk[0], fileName);
-    console.log(chunkLocation);
     var data = fs.readFileSync(chunkLocation);
-    console.log(data);
-
     if (!data) {
-      console.log("no data this should removed");
     }
-    console.log("hello");
     joinChunks(data.toString(), currentChapter, currentJoined);
     callback();
   }catch (error) {
@@ -234,8 +205,6 @@ function openUsfmFromChunks(chunk, currentJoined, totalChunk, source, callback) 
 ******************************************************************************/
 function joinChunks(text, currentChapter, currentJoined) {
   currentChapter = parseInt(currentChapter);
-  console.log(currentJoined);
-
   if (currentChapter == 0) {
     currentJoined.title = text;
   } else {
@@ -247,17 +216,10 @@ function joinChunks(text, currentChapter, currentJoined) {
       if (currentChunk.verses.hasOwnProperty(verse)) {
         var currentVerse = currentChunk.verses[verse];
         currentJoined[currentChapter][verse] = currentVerse;
-        console.log(currentJoined);
-
       }
     }
   }
 }
-
-
-
-
-
 
 
 module.exports = getData;
