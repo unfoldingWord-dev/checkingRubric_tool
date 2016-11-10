@@ -1,8 +1,8 @@
 {
-  "name": "TranslationRubricChecker",
+  "name": "checkingRubricTool",
   "version": "1.0.0",
   "description": "This is a tool to check the quality assurance of a bible translation project.",
-  "title": "TranslationRubric Check",
+  "title": "checkingRubric Tool",
   "include": [],
   "main": "View.js",
   "display": "app",

@@ -20,7 +20,7 @@ const {Row} = RB;
 const EventListeners = require('./ViewEventListeners.js');
 const TargetChapterDisplay = require('./subcomponents/TargetChapterDisplay.js');
 //String constants
-const NAMESPACE = 'TranslationRubricChecker';
+const NAMESPACE = 'checkingRubricTool';
 
 /**
  * @description - This class defines the view for TranslationRubric check module
@@ -153,8 +153,8 @@ class View extends React.Component {
          <Row className="show-grid" style={{marginTop: '25px'}}>
           <h3 style={{margin: '5px 0 5px 20px', width: '100%', fontWeight: 'bold', fontSize: '28px'}}>
             <span style={{color: '#44c6ff'}}>
-              TranslationRubric
-            </span> Check
+              checkingRubric
+            </span> Tool
           </h3>
           <TargetChapterDisplay getTargetChapter={this.getTargetChapter.bind(this)}
                                 currentChapter={this.state.currentCheck.chapter}
