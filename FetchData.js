@@ -1,5 +1,12 @@
 const api = window.ModuleApi;
 
+const path = require('path');
+const fs = require(window.__base + 'node_modules/fs-extra');
+
+var parser = require('./usfm-parse.js');
+var missingChunks = 0;
+
+
 function getData(params, progressCallback, onCompleteCallback) {
   // Get the gateway language and generate a check for each verse
   api.getGatewayLanguageAndSaveInCheckStore(params, progressCallback, function(bookData) {
@@ -95,8 +102,162 @@ function generateChecks(bookData, params, progressCallback, callback) {
       }
       groups.push(group);
     }
-  api.initializeCheckStore( "TranslationQuestionsChecker", params, groups);
-  callback();
+    api.initializeCheckStore( "TranslationRubricChecker", params, groups);
+
+    var targetLanguage = api.getDataFromCommon('targetLanguage');
+    if (!targetLanguage) {
+      if (!params.targetLanguagePath) {
+        console.error('translationRubric requires a filepath');
+      }
+      else {
+        sendToReader(params.targetLanguagePath, callback);
+      }
+    }
+
+    callback();
+
+
+
 }
+
+  function goup(){
+///////////////////////////////
+///////////////////////////////
+    var targetLanguage = api.getDataFromCommon('targetLanguage');
+    if (!targetLanguage) {
+      if (!params.targetLanguagePath) {
+        console.error('translationRubric requires a filepath');
+      }
+      else {
+        sendToReader(params.targetLanguagePath, callback);
+      }
+    }
+    callback();
+  }
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+///////////////////////////////
+/**
+* @description This function is used to send a file path to the readFile()
+* module
+* @param {string} file The path of the directory as specified by the user.
+******************************************************************************/
+function sendToReader(file, callback) {
+  try {
+    // FileModule.readFile(path.join(file, 'manifest.json'), readInManifest);
+    var data = api.getDataFromCommon('tcManifest');
+    readInManifest(data, file, callback);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+/**
+* @description This function takes the manifest file and parses it to JSON.
+* @param {string} manifest - The manifest.json file
+******************************************************************************/
+function readInManifest(manifest, source, callback) {
+  var bookTitle;
+  if (manifest.ts_project) {
+    bookTitle = manifest.ts_project.name;
+  }  else  {
+    bookTitle = manifest.project.name;
+  }
+  let bookTitleSplit = bookTitle.split(' ');
+  var bookName = bookTitleSplit.join('');
+  let bookFileName = bookName + '.json';
+  let finishedChunks = manifest.finished_chunks || manifest.finished_frames;
+  var total = len(finishedChunks);
+  let currentJoined = {};
+  var done = 0;
+  for (let chapterVerse in finishedChunks) {
+    if (finishedChunks.hasOwnProperty(chapterVerse)) {
+      let splitted = finishedChunks[chapterVerse].split('-');
+      openUsfmFromChunks(splitted, currentJoined, total, source,
+        function () {
+          done++;
+          if (done >= (total - missingChunks)) {
+            missingChunks = 0;
+            console.log(currentJoined + "joined");
+            api.putDataInCommon('targetLanguage', currentJoined);
+            callback();
+          }
+        });
+    }
+  }
+}
+
+
+function len(obj) {
+  var length = 0;
+  for (let item in obj) {
+    length++;
+  }
+  return length;
+}
+
+
+/**
+* @description This function opens the chunks defined in the manifest file.
+* @param {array} chunk - An array of the chunks defined in manifest
+******************************************************************************/
+function openUsfmFromChunks(chunk, currentJoined, totalChunk, source, callback) {
+  console.log(currentJoined);
+  console.log("openUsfmFromChunks");
+  let currentChapter = chunk[0];
+  try {
+    currentChapter = parseInt(currentChapter);
+    console.log(currentChapter);
+    var fileName = chunk[1] + '.txt';
+    console.log(fileName);
+    var chunkLocation = path.join(source, chunk[0], fileName);
+    console.log(chunkLocation);
+    var data = fs.readFileSync(chunkLocation);
+    console.log(data);
+
+    if (!data) {
+      console.log("no data this should removed");
+    }
+    console.log("hello");
+    joinChunks(data.toString(), currentChapter, currentJoined);
+    callback();
+  }catch (error) {
+    missingChunks++;
+  }
+}
+
+
+/**
+* @description This function saves the chunks locally as a window object;
+* @param {string} text - The text being read in from chunks
+******************************************************************************/
+function joinChunks(text, currentChapter, currentJoined) {
+  currentChapter = parseInt(currentChapter);
+  console.log(currentJoined);
+
+  if (currentChapter == 0) {
+    currentJoined.title = text;
+  } else {
+    if (currentJoined[currentChapter] === undefined) {
+      currentJoined[currentChapter] = {};
+    }
+    var currentChunk = parser(text);
+    for (let verse in currentChunk.verses) {
+      if (currentChunk.verses.hasOwnProperty(verse)) {
+        var currentVerse = currentChunk.verses[verse];
+        currentJoined[currentChapter][verse] = currentVerse;
+        console.log(currentJoined);
+
+      }
+    }
+  }
+}
+
+
+
+
+
+
 
 module.exports = getData;
