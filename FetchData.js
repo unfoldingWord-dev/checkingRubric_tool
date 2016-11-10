@@ -18,12 +18,19 @@ function generateChecks(bookData, params, progressCallback, callback) {
       group: groupName,
       checks: []
     };
+    console.log(bookData);
     for (let chapter of bookData.chapters) {
-        var check = {
-          chapter: parseInt(chapter.num),
-          checkStatus: []
+      console.log(bookData.chapters);
+
+        if(chapter.num){
+          var check = {
+            chapter: parseInt(chapter.num),
+            verse: 1,
+            index: bookData.chapters.indexOf(chapter),
+            checkStatus: []
+          }
+          group.checks.push(check);
         }
-        group.checks.push(check);
       }
     for(var i = 0; i < group.checks.length; i++){
       switch (group.group) {

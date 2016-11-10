@@ -2,39 +2,165 @@
  * TranslationQuestions check module
  */
 
-// Get the Translation Core Module API
+ //Modules not defined within TranslationQuestions_Check_tool
 const api = window.ModuleApi;
-
-// Get the React and ReactBootstrap libraries from the API
 const React = api.React;
-const ReactBootstrap = api.ReactBootstrap;
+
 
 // Declare modules that are not defined within our ExampleChecker
-// They will be initialized in the constructor
+// Will be initialized in the constructor
 var TPane = null;
 var CommentBox = null;
 
-// Initialize the namespace to be used inside the check store.
+//Bootstrap consts
+const RB = api.ReactBootstrap;
+const {Row} = RB;
+
+//Modules that are defined within TranslationQuestions_Check_tool
+const EventListeners = require('./ViewEventListeners.js');
+const TargetChapterDisplay = require('./subcomponents/TargetChapterDisplay.js');
+//String constants
 const NAMESPACE = 'TranslationQuestionsChecker';
 
-// Extends CheckModule class, which handles most aspects of a check module,
-// such as events when the user clicks the next button or menu items in the navigation menu,
-// saving checks in the check store, and updating the view.
-// If you don't want to extend CheckModule, then extend the React.Component class instead.
+/**
+ * @description - This class defines the view for TranslationQuestions check module
 
-
+ */
 
 class View extends React.Component {
   constructor() {
     super();
     this.state = {
+      currentCheck: null,
     }
+    TPane = api.getModule('TPane');
+
+    this.updateState = this.updateState.bind(this);
+    this.goToNextListener = EventListeners.goToNext.bind(this);
+    this.goToPreviousListener = EventListeners.goToPrevious.bind(this);
+    this.goToCheckListener = EventListeners.goToCheck.bind(this);
+    this.changeCheckTypeListener = EventListeners.changeCheckType.bind(this);
+  }
+
+  componentWillMount() {
+    this.updateState();
+    api.registerEventListener('goToNext', this.goToNextListener);
+    api.registerEventListener('goToPrevious', this.goToPreviousListener);
+    api.registerEventListener('goToCheck', this.goToCheckListener);
+    api.registerEventListener('changeCheckType', this.changeCheckTypeListener);
+  }
+
+  componentWillUnmount() {
+    api.removeEventListener('goToNext', this.goToNextListener);
+    api.removeEventListener('goToPrevious', this.goToPreviousListener);
+    api.removeEventListener('goToCheck', this.goToCheckListener);
+    api.removeEventListener('changeCheckType', this.changeCheckTypeListener);
+  }
+
+  /**
+   * @description - This method grabs the information that is currently in the
+   * store and uses it to update our state which in turn updates our view. This method is
+   * typically called after the store is updated so that our view updates to the latest
+   * data found in the store
+   */
+  updateState() {
+    var currentGroupIndex = api.getDataFromCheckStore(NAMESPACE, 'currentGroupIndex');
+    var currentCheckIndex = api.getDataFromCheckStore(NAMESPACE, 'currentCheckIndex');
+    if (currentGroupIndex === null || currentCheckIndex === null) {
+      console.warn("TranslationQuestions Check wasn't able to retrieve it's indices");
+      return;
+    }
+    var currentCheck = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['checks'][currentCheckIndex];
+    console.log(currentCheck);
+        var emitEvent = function() {
+            api.emitEvent('goToVerse', { chapterNumber: currentCheck.chapter, verseNumber: currentCheck.verse});
+            }
+    this.setState({
+      book: api.getDataFromCheckStore(NAMESPACE, 'book'),
+      currentCheck: currentCheck
+    }, emitEvent());
+  }
+
+ changeCurrentCheckInCheckStore(newGroupIndex, newCheckIndex) {
+  let loggedInUser = api.getLoggedInUser();
+  let userName = loggedInUser ? loggedInUser.userName : 'GUEST_USER';
+  
+  var groups = api.getDataFromCheckStore(NAMESPACE, 'groups');
+      var currentGroupIndex = api.getDataFromCheckStore(NAMESPACE, 'currentGroupIndex');
+      var currentCheckIndex = api.getDataFromCheckStore(NAMESPACE, 'currentCheckIndex');
+      //error check to make sure we're going to a legal group/check index
+      if (newGroupIndex !== undefined && newCheckIndex !== undefined) {
+        if (newGroupIndex < groups.length) {
+          api.putDataInCheckStore(NAMESPACE, 'currentGroupIndex', newGroupIndex);
+          if (newCheckIndex < groups[currentGroupIndex].checks.length) {
+            api.putDataInCheckStore(NAMESPACE, 'currentCheckIndex', newCheckIndex);
+          }
+          /* In the case that we're incrementing the check and now we're out of bounds
+           * of the group, we increment the group.
+           */
+          else if (newCheckIndex == groups[currentGroupIndex].checks.length &&
+            currentGroupIndex < groups.length - 1) {
+            api.putDataInCheckStore(NAMESPACE, 'currentGroupIndex', currentGroupIndex + 1);
+            api.putDataInCheckStore(NAMESPACE, 'currentCheckIndex', 0);
+          }
+          /* In the case that we're decrementing the check and now we're out of bounds
+            * of the group, we decrement the group.
+            */
+          else if (newCheckIndex == -1 && currentGroupIndex >= 0) {
+            var newGroupLength = groups[currentGroupIndex - 1].checks.length;
+            api.putDataInCheckStore(NAMESPACE, 'currentGroupIndex', currentGroupIndex - 1);
+            api.putDataInCheckStore(NAMESPACE, 'currentCheckIndex', newGroupLength - 1);
+          }
+          //invalid indices: don't do anything else
+          else {
+            return;
+          }
+        }
+      }
+      //Save Project
+      var commitMessage = 'user: ' + userName + ', namespace: ' + NAMESPACE +
+        ', group: ' + currentGroupIndex + ', check: ' + currentCheckIndex;
+      api.saveProject(commitMessage);
+      this.updateState();
+    }
+
+
+
+
+
+
+
+
+  /**
+   * @description - Helper method for retrieving the verse from different languages
+   * @param {string} language - string denoting either 'gatewayLanguage' or 'targetLanguage'
+   * that will be used to index into the 'common' namespace within CheckStore
+   */
+  getTargetChapter() {
+    var currentCheck = this.state.currentCheck;
+    var currentChapterNumber = currentCheck.chapter;
+    var targetLanguage = api.getDataFromCommon('targetLanguage');
+    try {
+      if (targetLanguage) {
+        return targetLanguage[currentChapterNumber];
+      }
+    }catch(e){}
   }
 
   render() {
     return (
       <div>
-        <h1>Hello tQ</h1>
+         <Row className="show-grid" style={{marginTop: '25px'}}>
+          <h3 style={{margin: '5px 0 5px 20px', width: '100%', fontWeight: 'bold', fontSize: '28px'}}>
+            <span style={{color: '#44c6ff'}}>
+              TranslationQuestions
+            </span> Check
+          </h3>
+          <TargetChapterDisplay getTargetChapter={this.getTargetChapter.bind(this)}
+                                currentChapter={this.state.currentCheck.chapter}
+                                book={this.state.book}/>
+        </Row>
+
       </div>
     );
   }
