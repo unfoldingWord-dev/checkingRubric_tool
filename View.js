@@ -1,8 +1,8 @@
 /**
- * TranslationRubric check module
+ * TranslationQuestions check module
  */
 
- //Modules not defined within TranslationRubric_Check_tool
+ //Modules not defined within TranslationQuestions_Check_tool
 const api = window.ModuleApi;
 const React = api.React;
 
@@ -16,14 +16,14 @@ var CommentBox = null;
 const RB = api.ReactBootstrap;
 const {Row} = RB;
 
-//Modules that are defined within TranslationRubric_Check_tool
+//Modules that are defined within TranslationQuestions_Check_tool
 const EventListeners = require('./ViewEventListeners.js');
 const TargetChapterDisplay = require('./subcomponents/TargetChapterDisplay.js');
 //String constants
-const NAMESPACE = 'checkingRubricTool';
+const NAMESPACE = 'TranslationQuestionsChecker';
 
 /**
- * @description - This class defines the view for TranslationRubric check module
+ * @description - This class defines the view for TranslationQuestions check module
 
  */
 
@@ -67,7 +67,7 @@ class View extends React.Component {
     var currentGroupIndex = api.getDataFromCheckStore(NAMESPACE, 'currentGroupIndex');
     var currentCheckIndex = api.getDataFromCheckStore(NAMESPACE, 'currentCheckIndex');
     if (currentGroupIndex === null || currentCheckIndex === null) {
-      console.warn("TranslationRubric Check wasn't able to retrieve it's indices");
+      console.warn("TranslationQuestions Check wasn't able to retrieve it's indices");
       return;
     }
     var currentCheck = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['checks'][currentCheckIndex];
@@ -84,7 +84,7 @@ class View extends React.Component {
  changeCurrentCheckInCheckStore(newGroupIndex, newCheckIndex) {
   let loggedInUser = api.getLoggedInUser();
   let userName = loggedInUser ? loggedInUser.userName : 'GUEST_USER';
-
+  
   var groups = api.getDataFromCheckStore(NAMESPACE, 'groups');
       var currentGroupIndex = api.getDataFromCheckStore(NAMESPACE, 'currentGroupIndex');
       var currentCheckIndex = api.getDataFromCheckStore(NAMESPACE, 'currentCheckIndex');
@@ -153,8 +153,8 @@ class View extends React.Component {
          <Row className="show-grid" style={{marginTop: '25px'}}>
           <h3 style={{margin: '5px 0 5px 20px', width: '100%', fontWeight: 'bold', fontSize: '28px'}}>
             <span style={{color: '#44c6ff'}}>
-              checkingRubric
-            </span> Tool
+              TranslationQuestions
+            </span> Check
           </h3>
           <TargetChapterDisplay getTargetChapter={this.getTargetChapter.bind(this)}
                                 currentChapter={this.state.currentCheck.chapter}

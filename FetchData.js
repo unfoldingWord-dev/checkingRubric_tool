@@ -102,12 +102,12 @@ function generateChecks(bookData, params, progressCallback, callback) {
       }
       groups.push(group);
     }
-    api.initializeCheckStore( "checkingRubricTool", params, groups);
+    api.initializeCheckStore( "TranslationRubricChecker", params, groups);
 
     var targetLanguage = api.getDataFromCommon('targetLanguage');
     if (!targetLanguage) {
       if (!params.targetLanguagePath) {
-        console.error('checkingRubric Tool requires a filepath');
+        console.error('translationRubric requires a filepath');
       }
       else {
         sendToReader(params.targetLanguagePath, callback);
@@ -126,7 +126,7 @@ function generateChecks(bookData, params, progressCallback, callback) {
     var targetLanguage = api.getDataFromCommon('targetLanguage');
     if (!targetLanguage) {
       if (!params.targetLanguagePath) {
-        console.error('checkingRubric Tool requires a filepath');
+        console.error('translationRubric requires a filepath');
       }
       else {
         sendToReader(params.targetLanguagePath, callback);
@@ -248,10 +248,15 @@ function joinChunks(text, currentChapter, currentJoined) {
         var currentVerse = currentChunk.verses[verse];
         currentJoined[currentChapter][verse] = currentVerse;
         console.log(currentJoined);
+
       }
     }
   }
 }
+
+
+
+
 
 
 
