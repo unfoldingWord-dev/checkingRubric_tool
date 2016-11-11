@@ -1,13 +1,13 @@
 /**
- * TranslationQuestions check module
+ * checkingRubric Tool module
  */
 
- //Modules not defined within TranslationQuestions_Check_tool
+ //Modules not defined within checkingRubric
 const api = window.ModuleApi;
 const React = api.React;
 
 
-// Declare modules that are not defined within our ExampleChecker
+// Declare modules that are not defined within our checkingRubric
 // Will be initialized in the constructor
 var TPane = null;
 var CommentBox = null;
@@ -16,14 +16,14 @@ var CommentBox = null;
 const RB = api.ReactBootstrap;
 const {Row} = RB;
 
-//Modules that are defined within TranslationQuestions_Check_tool
+//Modules that are defined within checkingRubric
 const EventListeners = require('./ViewEventListeners.js');
 const TargetChapterDisplay = require('./subcomponents/TargetChapterDisplay.js');
 //String constants
-const NAMESPACE = 'TranslationQuestionsChecker';
+const NAMESPACE = 'checkingRubricTool';
 
 /**
- * @description - This class defines the view for TranslationQuestions check module
+ * @description - This class defines the view for checkingRubric Tool module
 
  */
 
@@ -67,7 +67,7 @@ class View extends React.Component {
     var currentGroupIndex = api.getDataFromCheckStore(NAMESPACE, 'currentGroupIndex');
     var currentCheckIndex = api.getDataFromCheckStore(NAMESPACE, 'currentCheckIndex');
     if (currentGroupIndex === null || currentCheckIndex === null) {
-      console.warn("TranslationQuestions Check wasn't able to retrieve it's indices");
+      console.warn("checkingRubric tool wasn't able to retrieve it's indices");
       return;
     }
     var currentCheck = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['checks'][currentCheckIndex];
@@ -84,7 +84,7 @@ class View extends React.Component {
  changeCurrentCheckInCheckStore(newGroupIndex, newCheckIndex) {
   let loggedInUser = api.getLoggedInUser();
   let userName = loggedInUser ? loggedInUser.userName : 'GUEST_USER';
-  
+
   var groups = api.getDataFromCheckStore(NAMESPACE, 'groups');
       var currentGroupIndex = api.getDataFromCheckStore(NAMESPACE, 'currentGroupIndex');
       var currentCheckIndex = api.getDataFromCheckStore(NAMESPACE, 'currentCheckIndex');
@@ -124,13 +124,6 @@ class View extends React.Component {
       this.updateState();
     }
 
-
-
-
-
-
-
-
   /**
    * @description - Helper method for retrieving the verse from different languages
    * @param {string} language - string denoting either 'gatewayLanguage' or 'targetLanguage'
@@ -153,8 +146,8 @@ class View extends React.Component {
          <Row className="show-grid" style={{marginTop: '25px'}}>
           <h3 style={{margin: '5px 0 5px 20px', width: '100%', fontWeight: 'bold', fontSize: '28px'}}>
             <span style={{color: '#44c6ff'}}>
-              TranslationQuestions
-            </span> Check
+              checkingRubric
+            </span> Tool
           </h3>
           <TargetChapterDisplay getTargetChapter={this.getTargetChapter.bind(this)}
                                 currentChapter={this.state.currentCheck.chapter}

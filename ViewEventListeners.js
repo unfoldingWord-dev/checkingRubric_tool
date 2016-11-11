@@ -1,6 +1,6 @@
 
 const api = window.ModuleApi;
-const NAMESPACE = "TranslationQuestionsChecker";
+const NAMESPACE = "checkingRubricTool";
 
 module.exports = {
     goToNext: function(params) {

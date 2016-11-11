@@ -100,22 +100,18 @@ function generateChecks(bookData, params, progressCallback, callback) {
       }
       groups.push(group);
     }
-    api.initializeCheckStore( "TranslationRubricChecker", params, groups);
+    api.initializeCheckStore( "checkingRubricTool", params, groups);
 
     var targetLanguage = api.getDataFromCommon('targetLanguage');
     if (!targetLanguage) {
       if (!params.targetLanguagePath) {
-        console.error('translationRubric requires a filepath');
+        console.error('checkingRubric Tool requires a filepath');
       }
       else {
         sendToReader(params.targetLanguagePath, callback);
       }
     }
-
     callback();
-
-
-
 }
 
 /**
