@@ -74,7 +74,6 @@ class View extends React.Component {
       return;
     }
     var currentGroup = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['group'];
-    console.log(currentGroup);
     var currentCheck = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['checks'][currentCheckIndex];
     var emitEvent = function() {
             api.emitEvent('goToVerse', { chapterNumber: currentCheck.chapter, verseNumber: currentCheck.verse});
@@ -146,7 +145,6 @@ class View extends React.Component {
   }
 
   render() {
-    console.log(this.state.currentGroup);
     return (
       <div>
          <Row className="show-grid" style={{marginTop: '25px'}}>
