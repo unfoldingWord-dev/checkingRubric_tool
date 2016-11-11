@@ -2,6 +2,7 @@
 
 const api = window.ModuleApi;
 const React = api.React;
+const path = require('../style.js');
 
 /**
  * @description - This class defines the view for the TargetChapterDisplay Component
@@ -25,7 +26,7 @@ class TargetChapterDisplay extends React.Component {
 
   render() {
     return (
-      <div style={{width: "600px", height: "500px", backgroundColor: "#FFF", border: "2px solid black", overflow: "scroll", padding: "35px", textAlign: "justify", margin: "20px"}}>
+      <div style={style.targetChapterLayout}>
         <h4>
           <span style={{color: '#44c6ff', fontSize: "22px"}}>
           {this.props.book}
