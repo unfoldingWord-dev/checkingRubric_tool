@@ -74,6 +74,7 @@ class View extends React.Component {
       return;
     }
     var currentGroup = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['group'];
+    console.log(currentGroup);
     var currentCheck = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['checks'][currentCheckIndex];
     var emitEvent = function() {
             api.emitEvent('goToVerse', { chapterNumber: currentCheck.chapter, verseNumber: currentCheck.verse});
@@ -145,6 +146,7 @@ class View extends React.Component {
   }
 
   render() {
+    console.log(this.state.currentGroup);
     return (
       <div>
          <Row className="show-grid" style={{marginTop: '25px'}}>
@@ -156,7 +158,8 @@ class View extends React.Component {
           <TargetChapterDisplay getTargetChapter={this.getTargetChapter.bind(this)}
                                 currentChapter={this.state.currentCheck.chapter}
                                 book={this.state.book}/>
-          <Rubric currentCheck={this.state.currentCheck}/>
+          <Rubric currentCheck={this.state.currentCheck}
+                  currentGroup={this.state.currentGroup}/>
         </Row>
         <Row className="show-grid" style={{marginTop: '0px'}}>
           <CommentBox />

@@ -14,20 +14,27 @@ class Rubric extends React.Component {
   constructor() {
     super();
     this.state = {
-      questionsList: this.getQuestionsList()
+      currentGroup: null,
+      currentQuestionsList: null,
     }
+  }
+
+  componentWillMount(){
+    this.getCurrentGroup();
+    this.getQuestionsList();
   }
 
   getQuestionsList() {
      let questionsList = require('../static/QuestionsList.json').questionsList;
-     let overviewObject = questionsList.find(arrayElement => arrayElement.group === "overview")
-     console.log(overviewObject);
-     return questionsList;
+     let currentQuestionsList = questionsList.find(arrayElement => arrayElement.group === this.state.currentGroup)
+     this.setState({currentQuestionsList: currentQuestionsList});
+   }
+
+   getCurrentGroup(){
+     this.setState({currentGroup: this.props.currentGroup});
    }
 
   render() {
-    console.log(this.props.currentCheck);
-    console.log(this.state.questionsList);
     return (
       <div style={style.rubricLayout}>
 
