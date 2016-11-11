@@ -18,7 +18,6 @@ const {Row} = RB;
 const EventListeners = require('./ViewEventListeners.js');
 const TargetChapterDisplay = require('./subcomponents/TargetChapterDisplay.js');
 const Rubric = require('./subcomponents/Rubric.js');
-
 const style = require('./css/style.js');
 
 //String constants
@@ -34,6 +33,7 @@ class View extends React.Component {
     super();
     this.state = {
       currentCheck: null,
+      currentGroup: null,
     }
     TPane = api.getModule('TPane');
     CommentBox = api.getModule('CommentBox');
@@ -73,13 +73,15 @@ class View extends React.Component {
       console.warn("checkingRubric tool wasn't able to retrieve it's indices");
       return;
     }
+    var currentGroup = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['group'];
     var currentCheck = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['checks'][currentCheckIndex];
     var emitEvent = function() {
             api.emitEvent('goToVerse', { chapterNumber: currentCheck.chapter, verseNumber: currentCheck.verse});
             }
     this.setState({
       book: api.getDataFromCheckStore(NAMESPACE, 'book'),
-      currentCheck: currentCheck
+      currentCheck: currentCheck,
+      currentGroup: currentGroup
     }, emitEvent());
   }
 
@@ -154,7 +156,7 @@ class View extends React.Component {
           <TargetChapterDisplay getTargetChapter={this.getTargetChapter.bind(this)}
                                 currentChapter={this.state.currentCheck.chapter}
                                 book={this.state.book}/>
-          <Rubric />
+          <Rubric currentCheck={this.state.currentCheck}/>
         </Row>
         <Row className="show-grid" style={{marginTop: '0px'}}>
           <CommentBox />
