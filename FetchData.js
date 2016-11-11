@@ -164,7 +164,6 @@ function readInManifest(manifest, source, callback) {
   }
 }
 
-
 function len(obj) {
   var length = 0;
   for (let item in obj) {
@@ -172,7 +171,6 @@ function len(obj) {
   }
   return length;
 }
-
 
 /**
 * @description This function opens the chunks defined in the manifest file.
@@ -193,7 +191,6 @@ function openUsfmFromChunks(chunk, currentJoined, totalChunk, source, callback) 
     missingChunks++;
   }
 }
-
 
 /**
 * @description This function saves the chunks locally as a window object;

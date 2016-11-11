@@ -6,7 +6,6 @@
 const api = window.ModuleApi;
 const React = api.React;
 
-
 // Declare modules that are not defined within our checkingRubric
 // Will be initialized in the constructor
 var TPane = null;
@@ -71,8 +70,7 @@ class View extends React.Component {
       return;
     }
     var currentCheck = api.getDataFromCheckStore(NAMESPACE, 'groups')[currentGroupIndex]['checks'][currentCheckIndex];
-    console.log(currentCheck);
-        var emitEvent = function() {
+    var emitEvent = function() {
             api.emitEvent('goToVerse', { chapterNumber: currentCheck.chapter, verseNumber: currentCheck.verse});
             }
     this.setState({
