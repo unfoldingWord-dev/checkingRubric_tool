@@ -10,6 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "fs-extra": "^1.0.0"
+    "fs-extra": "^1.0.0",
+    "babel-preset-react": "^6.16.0",
+    "react": "^15.3.2"
   }
 }
