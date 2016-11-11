@@ -2,7 +2,7 @@
 
 const api = window.ModuleApi;
 const React = api.React;
-const path = require('../style.js');
+const style = require('../css/style.js');
 
 /**
  * @description - This class defines the view for the TargetChapterDisplay Component

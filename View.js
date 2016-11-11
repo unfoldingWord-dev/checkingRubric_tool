@@ -10,7 +10,6 @@ const React = api.React;
 // Will be initialized in the constructor
 var TPane = null;
 var CommentBox = null;
-
 //Bootstrap consts
 const RB = api.ReactBootstrap;
 const {Row} = RB;
@@ -18,6 +17,10 @@ const {Row} = RB;
 //Modules that are defined within checkingRubric
 const EventListeners = require('./ViewEventListeners.js');
 const TargetChapterDisplay = require('./subcomponents/TargetChapterDisplay.js');
+const Rubric = require('./subcomponents/Rubric.js');
+
+const style = require('./css/style.js');
+
 //String constants
 const NAMESPACE = 'checkingRubricTool';
 
@@ -33,6 +36,7 @@ class View extends React.Component {
       currentCheck: null,
     }
     TPane = api.getModule('TPane');
+    CommentBox = api.getModule('CommentBox');
 
     this.updateState = this.updateState.bind(this);
     this.goToNextListener = EventListeners.goToNext.bind(this);
@@ -142,7 +146,7 @@ class View extends React.Component {
     return (
       <div>
          <Row className="show-grid" style={{marginTop: '25px'}}>
-          <h3 style={{margin: '5px 0 5px 20px', width: '100%', fontWeight: 'bold', fontSize: '28px'}}>
+          <h3 style={style.toolName}>
             <span style={{color: '#44c6ff'}}>
               checkingRubric
             </span> Tool
@@ -150,8 +154,11 @@ class View extends React.Component {
           <TargetChapterDisplay getTargetChapter={this.getTargetChapter.bind(this)}
                                 currentChapter={this.state.currentCheck.chapter}
                                 book={this.state.book}/>
+          <Rubric />
         </Row>
-
+        <Row className="show-grid" style={{marginTop: '0px'}}>
+          <CommentBox />
+        </Row>
       </div>
     );
   }

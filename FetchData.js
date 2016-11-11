@@ -16,7 +16,7 @@ function getData(params, progressCallback, onCompleteCallback) {
  * Generates two groups of checks, where each group has a check for each verse.
  */
 function generateChecks(bookData, params, progressCallback, callback) {
-  var groupNames = ['Overview', 'Naturalness', 'Clarity', 'Accuracy', 'ChurchApproval'];
+  var groupNames = ['overview', 'naturalness', 'clarity', 'accuracy', 'churchApproval'];
   var groups = [];
   for (let groupName of groupNames) {
     var group = {
@@ -36,7 +36,7 @@ function generateChecks(bookData, params, progressCallback, callback) {
       }
     for(var i = 0; i < group.checks.length; i++){
       switch (group.group) {
-        case 'Overview':
+        case 'overview':
           var checkStatus = {
             meaningBased: 'UNCHECKED',
             firstLangSpeakers: 'UNCHECKED',
@@ -45,7 +45,7 @@ function generateChecks(bookData, params, progressCallback, callback) {
           }
           group.checks[i].checkStatus.push(checkStatus);
         break;
-        case 'Naturalness':
+        case 'naturalness':
           var checkStatus = {
             formOfLanguage: 'UNCHECKED',
             cultureCorrect: 'UNCHECKED',
@@ -58,7 +58,7 @@ function generateChecks(bookData, params, progressCallback, callback) {
           }
         group.checks[i].checkStatus.push(checkStatus);
         break;
-        case 'Clarity':
+        case 'clarity':
           var checkStatus = {
             easyUnderstood: 'UNCHECKED',
             correctNamingsVerbs: 'UNCHECKED',
@@ -71,7 +71,7 @@ function generateChecks(bookData, params, progressCallback, callback) {
           }
         group.checks[i].checkStatus.push(checkStatus);
         break;
-        case 'Accuracy':
+        case 'accuracy':
           var checkStatus = {
             importantWordsUsed:'UNCHECKED',
             wordCorrect: 'UNCHECKED',
@@ -85,7 +85,7 @@ function generateChecks(bookData, params, progressCallback, callback) {
           }
         group.checks[i].checkStatus.push(checkStatus);
         break;
-        case 'ChurchApproval':
+        case 'churchApproval':
           var checkStatus = {
             nativeAndGatewayReviewer:'UNCHECKED',
             naturalAndClear: 'UNCHECKED',
