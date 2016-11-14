@@ -32,8 +32,10 @@ Some of these are binary, yes/no, and others are ternary, 0/1/2, disagree/somewh
 4. no | yes The translation of this chapter has been done in accordance with the **Translation 
 Guidelines.**
 
-**Naturalness:** “this is my language”
+**Naturalness:** 
 ---
+
+`“this is my language” `
 
 1. 0 1 2 Those who speak this language and have heard this chapter agree that it is translated using the **correct form of the language.**
 2. 0 1 2 Those who speak this language agree that the key words used in this chapter are **acceptable and correct for this culture.**
@@ -45,8 +47,11 @@ Guidelines.**
 9. 0 1 2 The review of the translation of this chapter for naturalness included **both men and women.**
 
 
-**Clarity:**  “the meaning is clear” 
+**Clarity:**  
 ---
+
+`“the meaning is clear” `
+
 - 0 1 2 This chapter is translated using language that native speakers of the language agree is **easy to understand**.
 
 - 0 1 2 Speakers of this language agree that the translations of **names, places, and verb tenses are all correct** in this chapter.
@@ -89,8 +94,10 @@ Guidelines.**
 0 1 2 The translation of this chapter has been **compared against the original texts (Hebrew, Greek, Aramaic)** to check for correct lexical definitions and intent of the original texts.
 
  **Church approval**
-“the naturalness, clarity, and accuracy of the translation is approved by the Church that speaks that language”
 ---
+
+`“the naturalness, clarity, and accuracy of the translation is approved by the Church that speaks that language”`
+
 no | yes Church leaders who have checked this translation are **native speakers of the target language,** and include someone who **understands well one of the languages in which the source text** is available.
 
 no | yes People from at least two different church networks have **reviewed** the translation of this chapter and agree that it is **natural and clear**.* (Note: this addresses the first part of the community check for Level 2.)*
