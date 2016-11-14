@@ -19,9 +19,9 @@ var style = {
   },
 
   rubricLayout:{
-    width: "40%",
+    width: "45%",
     height: "400px",
-    margin: "20px 20px 0px 0px",
+    margin: "20px 0px 0px 0px",
     border: "2px solid black",
     float: "left",
     overflow: "scroll",
