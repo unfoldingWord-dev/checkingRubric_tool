@@ -1,7 +1,7 @@
 {
   "questionsList": [
     {
-      "group": "overview",
+      "group": "Overview",
       "questionsTypeBinary": true,
       "questions":{
         "meaningBased":"This translation is a meaning-based translation that attempts to communicate the meaning of the original text in ways that are natural, clear, and accurate in the target language.",
@@ -11,7 +11,7 @@
       }
     },
     {
-      "group": "naturalness",
+      "group": "Naturalness",
       "questionsTypeBinary": false,
       "questions":{
         "formOfLanguage":"Those who speak this language and have heard this chapter agree that it is translated using the correct form of the language.",
@@ -25,7 +25,7 @@
       }
     },
     {
-      "group": "clarity",
+      "group": "Clarity",
       "questionsTypeBinary": false,
       "questions":{
         "easyUnderstood":"This chapter is translated using language that native speakers of the language agree is easy to understand.",
@@ -39,7 +39,7 @@
       }
     },
     {
-      "group": "accuracy",
+      "group": "Accuracy",
       "questionsTypeBinary": false,
       "questions":{
         "importantWordsUsed":"A complete list of all important words in the source text for this chapter has been used to help ensure all terms are present in the translation.",
@@ -54,7 +54,7 @@
       }
     },
     {
-      "group":"churchApproval",
+      "group":"Church Approval",
       "questionsTypeBinary": true,
       "questions":{
         "nativeAndGatewayReviewer":"Church leaders who have checked this translation are native speakers of the target language, and include someone who understands well one of the languages in which the source text is available.",
