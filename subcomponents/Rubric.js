@@ -52,7 +52,7 @@ class Rubric extends React.Component {
       instructions.push(
         <tr key={1} style={{backgroundColor: "#747474", color: "#FFFFFF"}}>
           <td style={{border: "1px solid black", height: "80px", textAlign: "center"}}>Questions</td>
-          <td colSpan="2" style={{padding: "3px", textAlign: "center"}}> No/Yes statements (No indicates a problem must be resolved)</td>
+          <td colSpan="2" style={{border: "1px solid black", padding: "3px", textAlign: "center"}}> No/Yes statements (No indicates a problem must be resolved)</td>
         </tr>);
     }else{
       instructions.push(
