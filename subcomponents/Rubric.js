@@ -69,7 +69,7 @@ class Rubric extends React.Component {
   render(){
     return (
       <div style={style.rubricLayout}>
-        <div style={{textAlign: "center", fontSize: "24px", fontWeight: "500", padding: "1px", backgroundColor: "#333333", color: "#FFFFFF"}}>
+        <div style={{textAlign: "center", fontSize: "22px", fontWeight: "500", padding: "1px", backgroundColor: "#333333", color: "#FFFFFF"}}>
           {this.props.currentGroup}
         </div>
         <table>
