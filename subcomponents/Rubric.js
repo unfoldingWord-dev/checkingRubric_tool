@@ -2,6 +2,8 @@
 
 const api = window.ModuleApi;
 const React = api.React;
+const RB = api.ReactBootstrap;
+const {Button} = RB;
 const style = require('../css/style.js');
 
 /**
@@ -19,15 +21,16 @@ class Rubric extends React.Component {
   }
 
   getQuestions(){
-    let questionsList = [];
     let questionsObject = this.props.currentQuestionsList.questions;
+    let questionsTypeBinary = this.props.currentQuestionsList.questionsTypeBinary;
+    let questionsList = [];
     for(var key in questionsObject){
-      if(this.props.currentQuestionsList.questionsTypeBinary){
+      if(questionsTypeBinary){
         questionsList.push(
           <tr key={key}>
             <td style={{border: "1px solid black", padding: "10px"}}>{questionsObject[key]}</td>
-            <td style={{border: "1px solid black", padding: "10px"}}>No</td>
-            <td style={{border: "1px solid black", padding: "10px"}}>Yes</td>
+            <td style={{border: "1px solid black", padding: "5px", backgroundImage: "linear-gradient(to bottom,#f0ad4e 0,#eb9316 100%)"}}>No</td>
+            <td style={{border: "1px solid black", padding: "5px", backgroundImage: "linear-gradient(to bottom,#5cb85c 0,#419641 100%)"}}>Yes</td>
           </tr>);
       }else{
         questionsList.push(
@@ -45,7 +48,9 @@ class Rubric extends React.Component {
   render(){
     return (
       <div style={style.rubricLayout}>
-        <h3 style={{textAlign: "center"}}>{this.props.currentGroup}</h3>
+        <div style={{textAlign: "center", fontSize: "24px", fontWeight: "500", padding: "1px", backgroundColor: "#333333", color: "#FFFFFF"}}>
+          {this.props.currentGroup}
+        </div>
         <table>
           <tbody>
           {this.getQuestions()}
@@ -55,8 +60,6 @@ class Rubric extends React.Component {
     );
   }
 }
-
-
 
 
 module.exports = Rubric;

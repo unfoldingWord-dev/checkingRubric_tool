@@ -27,12 +27,10 @@ class TargetChapterDisplay extends React.Component {
   render() {
     return (
       <div style={style.targetChapterLayout}>
-        <h4>
-          <span style={{color: '#44c6ff', fontSize: "22px"}}>
-          {this.props.book}
-          </span>
+        <div style={{textAlign: "center", fontSize: "24px", fontWeight: "500", padding: "1px", backgroundColor: "#333333", color: "#FFFFFF", margin: "-15px -15px 10px -15px"}}>
+          <span style={{color: '#44c6ff', fontSize: "22px"}}>{this.props.book}</span>
           {" Chapter " + this.props.currentChapter}
-        </h4>
+        </div>
         {this.getTargetChapter()}
       </div>
     );
