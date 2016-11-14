@@ -43,7 +43,6 @@ class Rubric extends React.Component {
   }
 
   render(){
-    console.log(this.props.currentQuestionsList.questionsTypeBinary);
     return (
       <div style={style.rubricLayout}>
         <h3 style={{textAlign: "center"}}>{this.props.currentGroup}</h3>
