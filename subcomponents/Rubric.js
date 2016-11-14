@@ -29,7 +29,6 @@ class Rubric extends React.Component {
   }
 
   render(){
-    console.log(this.props.currentQuestionsList);
     return (
       <div style={style.rubricLayout}>
         <table>
