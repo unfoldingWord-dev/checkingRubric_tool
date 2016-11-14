@@ -153,10 +153,9 @@ class View extends React.Component {
    }
 
   render() {
-    console.log(this.state.currentCheck);
-    console.log(this.state.currentGroup);
     return (
       <div>
+        <TPane />
          <Row className="show-grid" style={{marginTop: '25px'}}>
           <h3 style={style.toolName}>
             <span style={{color: '#44c6ff'}}>
