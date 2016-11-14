@@ -155,6 +155,7 @@ class View extends React.Component {
   render() {
     return (
       <div>
+        <TPane />
          <Row className="show-grid" style={{marginTop: '25px'}}>
           <h3 style={style.toolName}>
             <span style={{color: '#44c6ff'}}>
