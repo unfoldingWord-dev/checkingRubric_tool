@@ -22,20 +22,35 @@ class Rubric extends React.Component {
     let questionsList = [];
     let questionsObject = this.props.currentQuestionsList.questions;
     for(var key in questionsObject){
-      questionsList.push(
-        <tr key={key} style={{border: "1px solid black"}}><td>{questionsObject[key]}</td></tr>);
+      if(this.props.currentQuestionsList.questionsTypeBinary){
+        questionsList.push(
+          <tr key={key}>
+            <td style={{border: "1px solid black", padding: "10px"}}>{questionsObject[key]}</td>
+            <td style={{border: "1px solid black", padding: "10px"}}>No</td>
+            <td style={{border: "1px solid black", padding: "10px"}}>Yes</td>
+          </tr>);
+      }else{
+        questionsList.push(
+          <tr key={key}>
+            <td style={{border: "1px solid black", padding: "10px"}}>{questionsObject[key]}</td>
+            <td style={{border: "1px solid black", padding: "10px"}}>0</td>
+            <td style={{border: "1px solid black", padding: "10px"}}>1</td>
+            <td style={{border: "1px solid black", padding: "10px"}}>2</td>
+          </tr>);
+      }
     }
     return questionsList;
   }
 
   render(){
+    console.log(this.props.currentQuestionsList.questionsTypeBinary);
     return (
       <div style={style.rubricLayout}>
+        <h3 style={{textAlign: "center"}}>{this.props.currentGroup}</h3>
         <table>
-        <tbody>
+          <tbody>
           {this.getQuestions()}
           </tbody>
-
         </table>
       </div>
     );

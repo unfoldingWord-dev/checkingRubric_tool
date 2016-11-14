@@ -8,9 +8,9 @@ var style = {
 
   targetChapterLayout:{
     width: "50%",
-    height: "500px",
+    height: "400px",
     margin: "20px 0px 0px 20px",
-    padding: "35px",
+    padding: "15px",
     backgroundColor: "#FFF",
     border: "2px solid black",
     overflow: "scroll",
@@ -20,10 +20,11 @@ var style = {
 
   rubricLayout:{
     width: "40%",
-    height: "500px",
+    height: "400px",
     margin: "20px 20px 0px 0px",
     border: "2px solid black",
     float: "left",
+    overflow: "scroll",
   },
 
 }
