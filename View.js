@@ -34,6 +34,7 @@ class View extends React.Component {
     this.state = {
       currentCheck: null,
       currentGroup: null,
+      currentQuestionsList: null,
     }
     TPane = api.getModule('TPane');
     CommentBox = api.getModule('CommentBox');
@@ -83,6 +84,7 @@ class View extends React.Component {
       currentCheck: currentCheck,
       currentGroup: currentGroup
     }, emitEvent());
+    this.getCurrentQuestionsList(currentGroup);
   }
 
  changeCurrentCheckInCheckStore(newGroupIndex, newCheckIndex) {
@@ -144,7 +146,15 @@ class View extends React.Component {
     }catch(e){}
   }
 
+  getCurrentQuestionsList(currentGroup){
+    let questionsList = require('./static/QuestionsList.json').questionsList;
+    let currentQuestionsList = questionsList.find(arrayElement => arrayElement.group === currentGroup);
+    this.setState({currentQuestionsList: currentQuestionsList});
+   }
+
   render() {
+    console.log(this.state.currentCheck);
+    console.log(this.state.currentGroup);
     return (
       <div>
          <Row className="show-grid" style={{marginTop: '25px'}}>
@@ -157,7 +167,8 @@ class View extends React.Component {
                                 currentChapter={this.state.currentCheck.chapter}
                                 book={this.state.book}/>
           <Rubric currentCheck={this.state.currentCheck}
-                  currentGroup={this.state.currentGroup}/>
+                  currentGroup={this.state.currentGroup}
+                  currentQuestionsList={this.state.currentQuestionsList}/>
         </Row>
         <Row className="show-grid" style={{marginTop: '0px'}}>
           <CommentBox />

@@ -9,7 +9,6 @@ const style = require('../css/style.js');
  render all the 5 questions of the rubric QA check
  */
 
-
 class Rubric extends React.Component {
   constructor() {
     super();
@@ -19,25 +18,26 @@ class Rubric extends React.Component {
     }
   }
 
-  componentWillMount(){
-    this.getCurrentGroup();
-    this.getQuestionsList();
+  getQuestions(){
+    let questionsList = [];
+    let questionsObject = this.props.currentQuestionsList.questions;
+    for(var key in questionsObject){
+      questionsList.push(
+        <tr key={key} style={{border: "1px solid black"}}><td>{questionsObject[key]}</td></tr>);
+    }
+    return questionsList;
   }
 
-  getQuestionsList() {
-     let questionsList = require('../static/QuestionsList.json').questionsList;
-     let currentQuestionsList = questionsList.find(arrayElement => arrayElement.group === this.state.currentGroup)
-     this.setState({currentQuestionsList: currentQuestionsList});
-   }
-
-   getCurrentGroup(){
-     this.setState({currentGroup: this.props.currentGroup});
-   }
-
-  render() {
+  render(){
+    console.log(this.props.currentQuestionsList);
     return (
       <div style={style.rubricLayout}>
+        <table>
+        <tbody>
+          {this.getQuestions()}
+          </tbody>
 
+        </table>
       </div>
     );
   }
