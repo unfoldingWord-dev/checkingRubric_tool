@@ -66,8 +66,10 @@ Guidelines.**
 
 **Accuracy**
 ---
+`
 “the translation communicates what the original source text (or original language texts, in the case of Bible texts) communicated”
----
+`
+
 0 1 2 A complete list of all **important words** in the source text for this chapter has been **used** to help ensure all terms are present in the translation.
 
 0 1 2 All important **words are translated correctly** in this chapter.
