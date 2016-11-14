@@ -21,9 +21,6 @@ https://unfoldingword.org/quality/
 Some of these are binary, yes/no, and others are ternary, 0/1/2, disagree/somewhat agree/strongly agree.
 
 
-Questions
----
-
 **Overview**
 ---
 1. no | yes This translation is a **meaning-based translation** that attempts to communicate the meaning of the original text in ways that are natural, clear, and accurate in the target language.
@@ -36,6 +33,7 @@ Questions
 Guidelines.**
 
 **Naturalness:** “this is my language”
+---
 
 1. 0 1 2 Those who speak this language and have heard this chapter agree that it is translated using the **correct form of the language.**
 2. 0 1 2 Those who speak this language agree that the key words used in this chapter are **acceptable and correct for this culture.**
