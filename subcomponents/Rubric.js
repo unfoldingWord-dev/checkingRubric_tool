@@ -20,6 +20,30 @@ class Rubric extends React.Component {
     }
   }
 
+
+  getInstructions(){
+    let questionsTypeBinary = this.props.currentQuestionsList.questionsTypeBinary;
+    let instructions = [];
+    if(questionsTypeBinary){
+      instructions.push(
+        <tr key={1} style={style.subTitleTr}>
+          <td style={style.subTitleQuestions}>Questions</td>
+          <td colSpan="2" style={style.subTitleYesOrNo}>
+            No/Yes statements (No indicates a problem must be resolved)
+          </td>
+        </tr>);
+    }else{
+      instructions.push(
+      <tr key={2} style={style.subTitleTr}>
+        <td style={style.subTitleQuestions}>Questions</td>
+        <td style={style.vertButtonDesc}>Disagree</td>
+        <td style={style.vertButtonDesc}>Agree somewhat</td>
+        <td style={style.vertButtonDesc}>Strongly agree</td>
+      </tr>);
+    }
+    return instructions;
+  }
+
   getQuestions(){
     let questionsObject = this.props.currentQuestionsList.questions;
     let questionsTypeBinary = this.props.currentQuestionsList.questionsTypeBinary;
@@ -28,48 +52,27 @@ class Rubric extends React.Component {
       if(questionsTypeBinary){
         questionsList.push(
           <tr key={key}>
-            <td style={{border: "1px solid black", padding: "10px"}}>{questionsObject[key]}</td>
-            <td style={{border: "1px solid black", padding: "10px", textAlign: "center", backgroundImage: "linear-gradient(to bottom,#f0ad4e 0,#eb9316 100%)", color: "#FFFFFF"}}>No</td>
-            <td style={{border: "1px solid black", padding: "10px", textAlign: "center", backgroundImage: "linear-gradient(to bottom,#5cb85c 0,#419641 100%)", color: "#FFFFFF"}}>Yes</td>
+            <td style={style.questions}>{questionsObject[key]}</td>
+            <td style={style.noButton}>No</td>
+            <td style={style.yesButton}>Yes</td>
           </tr>);
       }else{
         questionsList.push(
           <tr key={key}>
-            <td style={{border: "1px solid black", padding: "10px"}}>{questionsObject[key]}</td>
-            <td style={{border: "1px solid black", padding: "10px", textAlign: "center", color: "#FFFFFF", backgroundColor: "#c3105a"}}>0</td>
-            <td style={{border: "1px solid black", padding: "10px", textAlign: "center", color: "#FFFFFF", backgroundImage: "linear-gradient(to bottom,#f0ad4e 0,#eb9316 100%)"}}>1</td>
-            <td style={{border: "1px solid black", padding: "10px", textAlign: "center", color: "#FFFFFF", backgroundImage: "linear-gradient(to bottom,#5cb85c 0,#419641 100%)"}}>2</td>
+            <td style={style.questions}>{questionsObject[key]}</td>
+            <td style={style.zeroButton}>0</td>
+            <td style={style.oneButton}>1</td>
+            <td style={style.twoButton}>2</td>
           </tr>);
       }
     }
     return questionsList;
   }
 
-  getInstructions(){
-    let questionsTypeBinary = this.props.currentQuestionsList.questionsTypeBinary;
-    let instructions = [];
-    if(questionsTypeBinary){
-      instructions.push(
-        <tr key={1} style={{backgroundColor: "#747474", color: "#FFFFFF"}}>
-          <td style={{border: "1px solid black", height: "80px", textAlign: "center"}}>Questions</td>
-          <td colSpan="2" style={{border: "1px solid black", padding: "3px", textAlign: "center"}}> No/Yes statements (No indicates a problem must be resolved)</td>
-        </tr>);
-    }else{
-      instructions.push(
-      <tr key={2} style={{backgroundColor: "#747474", color: "#FFFFFF"}}>
-        <td style={{border: "1px solid black", height: "80px", textAlign: "center"}}>Questions</td>
-        <td style={{border: "1px solid black", transform: "rotate(-90deg)", height: "80px"}}>Disagree</td>
-        <td style={{border: "1px solid black", transform: "rotate(-90deg)", height: "80px"}}>Agree somewhat</td>
-        <td style={{border: "1px solid black", transform: "rotate(-90deg)", height: "80px"}}>Strongly agree</td>
-      </tr>);
-    }
-    return instructions;
-  }
-
   render(){
     return (
       <div style={style.rubricLayout}>
-        <div style={{textAlign: "center", fontSize: "22px", fontWeight: "500", padding: "1px", backgroundColor: "#333333", color: "#FFFFFF"}}>
+        <div style={style.currentGroupHeader}>
           {this.props.currentGroup}
         </div>
         <table>
