@@ -6,6 +6,10 @@ Description
 ---
 This is a tool to check the quality assurance of a bible translation project.
 
+Requirements
+---
+This module/plugin was designed to be used within translationCore app. Thus, in order to start using this module/tool you may download translationCore at https://github.com/unfoldingWord-dev/translationCore.
+
 Tool to answer questions in the rubric:
 ---
 
