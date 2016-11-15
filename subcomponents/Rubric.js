@@ -20,7 +20,6 @@ class Rubric extends React.Component {
     }
   }
 
-
   getInstructions(){
     let questionsTypeBinary = this.props.currentQuestionsList.questionsTypeBinary;
     let instructions = [];
