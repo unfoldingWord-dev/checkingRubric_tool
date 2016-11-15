@@ -18,7 +18,7 @@ var style = {
     float: "left",
   },
 
-  targetChapterLayout:{
+  chapterHeader:{
     textAlign: "center",
     fontSize: "20px",
     fontWeight: "500",
