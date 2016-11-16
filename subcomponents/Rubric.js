@@ -17,6 +17,7 @@ class Rubric extends React.Component {
     this.state = {
       currentGroup: null,
       currentQuestionsList: null,
+
     }
   }
 
@@ -52,20 +53,24 @@ class Rubric extends React.Component {
         questionsList.push(
           <tr key={key}>
             <td style={style.questions}>{questionsObject[key]}</td>
-            <td style={style.noButton}>No</td>
-            <td style={style.yesButton}>Yes</td>
+            <td style={style.yesButton} onClick={console.log("yes")}>Yes</td>
+            <td style={style.noButton} onClick={this..bind(this)}>No</td>
           </tr>);
       }else{
         questionsList.push(
           <tr key={key}>
             <td style={style.questions}>{questionsObject[key]}</td>
-            <td style={style.zeroButton}>0</td>
-            <td style={style.oneButton}>1</td>
-            <td style={style.twoButton}>2</td>
+            <td style={style.zeroButton} onClick={console.log("0")}>0</td>
+            <td style={style.oneButton} onClick={console.log("1")}>1</td>
+            <td style={style.twoButton} onClick={console.log("2")}>2</td>
           </tr>);
       }
     }
     return questionsList;
+  }
+
+  clicked(){
+    console.log("hello no");
   }
 
   render(){
