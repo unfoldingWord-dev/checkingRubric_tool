@@ -84,7 +84,8 @@ var style = {
     padding: "10px",
     textAlign: "center",
     backgroundImage: "linear-gradient(to bottom,#f0ad4e 0,#eb9316 100%)",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    cursor: "pointer"
   },
 
   yesButton:{
@@ -92,7 +93,8 @@ var style = {
     padding: "10px",
     textAlign: "center",
     backgroundImage: "linear-gradient(to bottom,#5cb85c 0,#419641 100%)",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
+    cursor: "pointer"
   },
 
   zeroButton:{
@@ -100,7 +102,8 @@ var style = {
     padding: "10px",
     textAlign: "center",
     color: "#FFFFFF",
-    backgroundColor: "#c3105a"
+    backgroundColor: "#c3105a",
+    cursor: "pointer"
   },
 
   oneButton:{
@@ -108,7 +111,8 @@ var style = {
     padding: "10px",
     textAlign: "center",
     color: "#FFFFFF",
-    backgroundImage: "linear-gradient(to bottom,#f0ad4e 0,#eb9316 100%)"
+    backgroundImage: "linear-gradient(to bottom,#f0ad4e 0,#eb9316 100%)",
+    cursor: "pointer"
   },
 
   twoButton:{
@@ -116,10 +120,9 @@ var style = {
     padding: "10px",
     textAlign: "center",
     color: "#FFFFFF",
-    backgroundImage: "linear-gradient(to bottom,#5cb85c 0,#419641 100%)"
+    backgroundImage: "linear-gradient(to bottom,#5cb85c 0,#419641 100%)",
+    cursor: "pointer"
   },
-
-
 
 }
 
