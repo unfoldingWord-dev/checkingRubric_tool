@@ -28,7 +28,7 @@ class Rubric extends React.Component {
         <tr key={1} style={style.subTitleTr}>
           <td style={style.subTitleQuestions}>Questions</td>
           <td colSpan="2" style={style.subTitleYesOrNo}>
-            No/Yes statements (No indicates a problem must be resolved)
+            Yes/No statements (No indicates a problem must be resolved)
           </td>
         </tr>);
     }else{
