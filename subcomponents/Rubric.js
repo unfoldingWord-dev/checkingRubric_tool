@@ -52,16 +52,21 @@ class Rubric extends React.Component {
         questionsList.push(
           <tr key={key}>
             <td style={style.questions}>{questionsObject[key]}</td>
-            <td style={style.yesButton} onClick={this.yesSelection.bind(this)}>Yes</td>
-            <td style={style.noButton} onClick={this.noSelection.bind(this)}>No</td>
+            <td style={style.yesButton} onClick={this.yesSelection.bind(this)}
+                title="Click to repond yes to this question">Yes</td>
+            <td style={style.noButton} onClick={this.noSelection.bind(this)}
+                title="Click to respond no to this question">No</td>
           </tr>);
       }else{
         questionsList.push(
           <tr key={key}>
             <td style={style.questions}>{questionsObject[key]}</td>
-            <td style={style.zeroButton} onClick={this.zeroSelection.bind(this)}>0</td>
-            <td style={style.oneButton} onClick={this.oneSelection.bind(this)}>1</td>
-            <td style={style.twoButton} onClick={this.twoSelection.bind(this)}>2</td>
+            <td style={style.zeroButton} onClick={this.zeroSelection.bind(this)}
+                title="Click to disagree with this question">0</td>
+            <td style={style.oneButton} onClick={this.oneSelection.bind(this)}
+                title="Click to somewhat agree with this question">1</td>
+            <td style={style.twoButton} onClick={this.twoSelection.bind(this)}
+                title="Click to strongly agree with this question">2</td>
           </tr>);
       }
     }
