@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "This is a tool to check the quality assurance of a bible translation project.",
   "title": "checkingRubric Tool",
-  "include": [
-    "TPane",
-    "CommentBox"
-  ],
+  "include": {
+    "TPane": "1.0.0",
+    "CommentBox: "1.0.0""
+  },
   "main": "View.js",
   "display": "app",
   "scripts": {
