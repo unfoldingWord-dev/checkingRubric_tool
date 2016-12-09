@@ -5,7 +5,7 @@
   "title": "checkingRubric Tool",
   "include": {
     "TPane": "1.0.0",
-    "CommentBox: "1.0.0"
+    "CommentBox": "1.0.0"
   },
   "main": "View.js",
   "display": "app",
