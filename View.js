@@ -8,7 +8,7 @@ const React = api.React;
 
 // Declare modules that are not defined within our checkingRubric
 // Will be initialized in the constructor
-var TPane = null;
+var ScripturePane = null;
 var CommentBox = null;
 //Bootstrap consts
 const RB = api.ReactBootstrap;
@@ -36,7 +36,7 @@ class View extends React.Component {
       currentGroup: null,
       currentQuestionsList: null,
     }
-    TPane = api.getModule('TPane');
+    ScripturePane = api.getModule('ScripturePane');
     CommentBox = api.getModule('CommentBox');
 
     this.updateState = this.updateState.bind(this);
@@ -155,7 +155,7 @@ class View extends React.Component {
   render() {
     return (
       <div>
-        <TPane />
+        <ScripturePane />
          <Row className="show-grid" style={{marginTop: '25px'}}>
           <h3 style={style.toolName}>
             <span style={{color: '#44c6ff'}}>
